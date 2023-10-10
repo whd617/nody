@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoDY</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+
+    <style>
+        .pageHead {
+            margin-top: 50px;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center
+        }
+
+        .homeBtn {
+            width: 100px;
+            height: 40px;
+            color: rgb(0, 224, 224);
+            border: 4px solid rgb(0, 224, 224);
+
+            background-color: transparent;
+            border-radius: 3px;
+
+            margin-right: 30px;
+        }
+
+        .teamBtn {
+            width: 100px;
+            height: 40px;
+            color: rgb(0, 224, 224);
+            border: 4px solid rgb(0, 224, 224);
+
+            background-color: transparent;
+            border-radius: 3px;
+
+            margin-right: 30px;
+        }
+
+        .membBtn {
+            width: 100px;
+            height: 40px;
+            color: rgb(0, 224, 224);
+            border: 4px solid rgb(0, 224, 224);
+
+            background-color: transparent;
+            border-radius: 3px;
+
+            margin-right: 30px;
+        }
+
+        .visiBtn {
+            width: 100px;
+            height: 40px;
+            color: rgb(0, 224, 224);
+            border: 4px solid rgb(0, 224, 224);
+
+            background-color: transparent;
+            border-radius: 3px;
+        }
+
+        .mainBack1 {
+            width: 850px;
+            border-radius: 20px;
+            padding: 60px;
+            line-height: 200%;
+
+            margin: 30px auto 30px auto;
+        }
+
+        .mainpicBtn {
+            width: 700px;
+            height: 500px;
+            background-color: transparent;
+            border: 0;
+            border-radius: 5px;
+
+            background-image: url("https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbMEzOz%2FbtsxH0TRwK3%2FZenVCMkUxSCi4GT1pmeHpk%2Fimg.png");
+            background-position: center;
+            background-size: cover;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            margin: 0 auto 0 auto;
+        }
+    </style>
+    <script type="module">
+        // Firebase SDK 라이브러리 가져오기
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import {
+            collection,
+            addDoc,
+        } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyCy7EphgjEoDB7EAffAvZlQh1WpW2Bsb-E",
+            authDomain: "sparta-5d763.firebaseapp.com",
+            projectId: "sparta-5d763",
+            storageBucket: "sparta-5d763.appspot.com",
+            messagingSenderId: "231203207416",
+            appId: "1:231203207416:web:ea7f190f63e9331edf630d",
+            measurementId: "G-L4FHT4V54P",
+        };
+
+        // Firebase 인스턴스 초기화
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // firebase 초기 설정 완료
+
+        var Target = document.getElementById("clock");
+        var Target_apm = document.getElementById("apm");
+        function clock() {
+            var time = new Date();
+            var hours = time.getHours();
+            var minutes = time.getMinutes();
+            //var seconds = time.getSeconds();
+            var AmPm = "AM";
+            if (hours > 12) {
+                var AmPm = "PM";
+                hours %= 12;
+            }
+
+            Target.innerText =
+                `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}`;
+
+            Target_apm.innerText = `${AmPm}`;
+
+        }
+        clock();
+        setInterval(clock, 1000); // 시계 설정
+    </script>
+</head>
+
+<body>
+    <div class="pageHead"><!-- 상단 메뉴 버튼 4개 -->
+        <button class="homeBtn" onclick="location.href='homE.html'">HOME</button>
+        <button class="teamBtn" onclick="location.href='teaM.html'">TEAM</button>
+        <button class="membBtn" onclick="location.href='memberS.html'">MEMBERS</button>
+        <button class="visiBtn" onclick="location.href='visitoR.html'">VISITOR'</button>
+    </div>
+    <div class="mainBack1">
+        <div class="mainPic1">
+            <button class="mainpicBtn"
+                onclick="window.open('homE_popup.html','window_name','width=850,height=800,location=no,status=no');"></button>
+            <!-- 개발자 페이지 연결하는 버튼(NoDY 사진)입니다 -->
+        </div>
+    </div>
+    <div style="text-align: center;"> <!-- 시계 -->
+        <span id="clock" style="color: rgba(0, 224, 224, 0.708); font-size: 80px;">clock</span>
+        <span id="apm" style="color:rgba(0, 224, 224, 0.708); font-size: 40px;">ampm</span>
+    </div>
+</body>
+
+</html>
